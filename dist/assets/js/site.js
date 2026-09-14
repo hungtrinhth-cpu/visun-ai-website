@@ -223,9 +223,53 @@ if (menuButton && nav) {
 }
 
 const header = document.querySelector(".site-header");
-const syncHeader = () => header?.classList.toggle("is-scrolled", window.scrollY > 20);
+let scrollFrame = 0;
+const syncHeader = () => {
+  header?.classList.toggle("is-scrolled", window.scrollY > 20);
+  if (header) {
+    const scrollRange = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+    const progress = Math.min(Math.max(window.scrollY / scrollRange, 0), 1);
+    header.style.setProperty("--scroll-progress", progress.toFixed(4));
+  }
+  scrollFrame = 0;
+};
+const scheduleHeaderSync = () => {
+  if (!scrollFrame) scrollFrame = window.requestAnimationFrame(syncHeader);
+};
 syncHeader();
-window.addEventListener("scroll", syncHeader, { passive: true });
+window.addEventListener("scroll", scheduleHeaderSync, { passive: true });
+window.addEventListener("resize", scheduleHeaderSync, { passive: true });
+
+document.querySelectorAll(".process-step").forEach((item) => item.setAttribute("data-reveal", ""));
+document.querySelectorAll(".page-hero-inner > *, .cta-inner > *").forEach((item) => item.setAttribute("data-reveal", ""));
+document.querySelectorAll(".section-head, .form-shell, .faq-list").forEach((item) => {
+  if (!item.hasAttribute("data-reveal")) item.setAttribute("data-reveal", "");
+});
+
+const motionCards = document.querySelectorAll(".service-card, .solution-card, .proof-card, .resource-card, .pricing-card, .article-card, .metric");
+motionCards.forEach((card) => {
+  card.classList.add("motion-card");
+  if (!card.hasAttribute("data-reveal")) card.setAttribute("data-reveal", "");
+});
+
+const staggerGroups = document.querySelectorAll(".hero-grid, .service-grid, .solution-grid, .proof-grid, .resource-grid, .pricing-grid, .process-rail, .activity-grid, .blog-grid, .metric-row, .page-hero-inner, .cta-inner");
+staggerGroups.forEach((group) => {
+  [...group.children]
+    .filter((item) => item.matches("[data-reveal]"))
+    .forEach((item, index) => item.style.setProperty("--reveal-delay", `${Math.min(index, 6) * 65}ms`));
+});
+
+const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+const hasFinePointer = window.matchMedia?.("(hover: hover) and (pointer: fine)").matches;
+if (!prefersReducedMotion && hasFinePointer) {
+  motionCards.forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const bounds = card.getBoundingClientRect();
+      card.style.setProperty("--pointer-x", `${event.clientX - bounds.left}px`);
+      card.style.setProperty("--pointer-y", `${event.clientY - bounds.top}px`);
+    }, { passive: true });
+  });
+}
 
 const revealItems = document.querySelectorAll("[data-reveal]");
 if ("IntersectionObserver" in window) {
@@ -236,7 +280,7 @@ if ("IntersectionObserver" in window) {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.12, rootMargin: "0px 0px -34px" });
   revealItems.forEach((item) => observer.observe(item));
 } else {
   revealItems.forEach((item) => item.classList.add("is-visible"));
