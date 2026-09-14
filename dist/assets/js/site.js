@@ -1,10 +1,3 @@
-const fontStylesheet = document.createElement("link");
-fontStylesheet.rel = "stylesheet";
-fontStylesheet.href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap";
-fontStylesheet.media = "print";
-fontStylesheet.addEventListener("load", () => { fontStylesheet.media = "all"; }, { once: true });
-document.head.append(fontStylesheet);
-
 const pageName = document.body.dataset.page || "home";
 const isEnglish = document.documentElement.lang.toLowerCase().startsWith("en");
 const englishTargetByPage = {
