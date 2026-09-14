@@ -70,11 +70,11 @@ const ui = isEnglish ? {
   cookies: "Cookie policy",
   copyright: "© 2026 VISUN AI - DIGITAL WORKFORCE. All rights reserved.",
   principle: "AI for real work · Clear scope · Human accountability",
-  socialLabel: "VISUN AI social channels",
+  socialLabel: "Visun AI social channels",
   quickLabel: "Quick contact",
   messenger: "Facebook inbox",
   zalo: "Chat on Zalo",
-  phone: "Call VISUN AI",
+  phone: "Call Visun AI",
 } : {
   logoLabel: "VISUN AI - ĐỘI NHÂN SỰ SỐ - Trang chủ",
   openMenu: "Mở menu",
@@ -100,11 +100,11 @@ const ui = isEnglish ? {
   cookies: "Chính sách cookie",
   copyright: "© 2026 VISUN AI - ĐỘI NHÂN SỰ SỐ. Bảo lưu mọi quyền.",
   principle: "AI vào việc thật · Có phạm vi · Có người chịu trách nhiệm",
-  socialLabel: "Mạng xã hội VISUN AI",
+  socialLabel: "Mạng xã hội Visun AI",
   quickLabel: "Liên hệ nhanh",
   messenger: "Inbox Facebook",
   zalo: "Chat Zalo",
-  phone: "Gọi VISUN AI",
+  phone: "Gọi Visun AI",
 };
 
 const headerTarget = document.querySelector("[data-site-header]");
@@ -291,7 +291,7 @@ document.querySelectorAll("[data-contact-form]").forEach((form) => {
     event.preventDefault();
     const status = form.querySelector("[data-form-status]");
     const data = new FormData(form);
-    const subject = encodeURIComponent(`${isEnglish ? "Consultation request" : "Yêu cầu tư vấn"} - VISUN AI - ${data.get("company") || data.get("name")}`);
+    const subject = encodeURIComponent(`${isEnglish ? "Consultation request" : "Yêu cầu tư vấn"} - Visun AI - ${data.get("company") || data.get("name")}`);
     const body = encodeURIComponent((isEnglish ? [
       `Name: ${data.get("name") || ""}`,
       `Role: ${data.get("role") || ""}`,

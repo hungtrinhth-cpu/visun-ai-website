@@ -323,6 +323,12 @@ p { margin: 0; }
 .founder-label strong { display: block; font-family: "Montserrat", sans-serif; font-size: 1.15rem; }
 .founder-label span { display: block; margin-top: 5px; color: rgba(255,255,255,.72); font-size: .9rem; line-height: 1.45; }
 .founder-label .founder-company { color: var(--white); font-weight: 700; white-space: nowrap; }
+.founder-profile-section { padding-block: 86px; }
+.founder-profile-section .split { grid-template-columns: minmax(0, 1.45fr) minmax(260px, .55fr); gap: clamp(42px, 6vw, 82px); align-items: center; }
+.founder-profile-section .founder-frame { width: 100%; max-width: 310px; }
+.founder-profile-section .founder-label { right: -26px; bottom: 18px; min-width: 350px; padding: 16px 18px; }
+.founder-profile-section .founder-label strong { font-size: 1rem; }
+.founder-profile-section .founder-label span { font-size: .8rem; }
 
 .activities-section { overflow: hidden; background: var(--white); }
 .activity-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-auto-rows: 178px; gap: 14px; }
@@ -594,6 +600,8 @@ p { margin: 0; }
   .toc { position: static; order: -1; }
   .cta-inner { grid-template-columns: 1fr; }
   .contact-actions { justify-content: flex-start; }
+  .founder-profile-section .split { grid-template-columns: 1fr; gap: 40px; }
+  .founder-profile-section .founder-frame { max-width: 310px; margin-top: 4px; }
 }
 
 @media (max-width: 600px) {
@@ -620,6 +628,9 @@ p { margin: 0; }
   .service-card { min-height: 360px; }
   .founder-label { right: -4px; bottom: 16px; min-width: 0; max-width: calc(100% - 12px); padding: 18px 20px; }
   .founder-label .founder-company { white-space: normal; }
+  .founder-profile-section { padding-block: 64px; }
+  .founder-profile-section .founder-frame { max-width: 270px; }
+  .founder-profile-section .founder-label { right: -10px; bottom: 12px; width: calc(100% + 20px); min-width: 0; max-width: none; padding: 14px 15px; }
   .resource-card:first-child { grid-column: auto; }
   .article-card.featured { grid-column: auto; }
   .author-card { grid-template-columns: 64px 1fr; }
