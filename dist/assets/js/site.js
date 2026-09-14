@@ -1,28 +1,36 @@
+const fontStylesheet = document.createElement("link");
+fontStylesheet.rel = "stylesheet";
+fontStylesheet.href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap";
+fontStylesheet.media = "print";
+fontStylesheet.addEventListener("load", () => { fontStylesheet.media = "all"; }, { once: true });
+document.head.append(fontStylesheet);
+
 const pageName = document.body.dataset.page || "home";
 const isEnglish = document.documentElement.lang.toLowerCase().startsWith("en");
 const englishTargetByPage = {
   home: "en.html",
-  about: "en.html#about",
-  services: "en.html#training",
-  training: "en.html#training",
-  academy: "en.html#individual-courses",
-  consulting: "en.html#solutions",
-  deployment: "en.html#solutions",
-  solutions: "en.html#solutions",
-  projects: "en.html#projects",
-  blog: "en.html#insights",
-  resources: "en.html#resources",
-  contact: "en.html#consultation-form",
-  faq: "en.html#consultation-form",
+  about: "en-about.html",
+  services: "en-services.html",
+  training: "en-services.html#corporate-training",
+  academy: "en-academy.html",
+  consulting: "en-services.html#consulting",
+  deployment: "en-services.html#workflow",
+  solutions: "en-solutions.html",
+  projects: "en-projects.html",
+  blog: "en-blog.html",
+  resources: "en-resources.html",
+  contact: "en-contact.html#consultation-form",
+  faq: "en-faq.html",
 };
 
 const navItems = isEnglish ? [
   { key: "home", label: "HOME", href: "en.html" },
-  { key: "about", label: "ABOUT US", href: "en.html#about" },
-  { key: "solutions", label: "SOLUTIONS", href: "en.html#solutions" },
-  { key: "projects", label: "PROJECTS", href: "en.html#projects" },
-  { key: "blog", label: "INSIGHTS", href: "en.html#insights" },
-  { key: "contact", label: "CONTACT", href: "en.html#consultation-form" },
+  { key: "about", label: "ABOUT US", href: "en-about.html" },
+  { key: "solutions", label: "SOLUTIONS", href: "en-solutions.html" },
+  { key: "projects", label: "PROJECTS", href: "en-projects.html" },
+  { key: "blog", label: "BLOG", href: "en-blog.html" },
+  { key: "resources", label: "RESOURCES", href: "en-resources.html" },
+  { key: "contact", label: "CONTACT", href: "en-contact.html#consultation-form" },
 ] : [
   { key: "home", label: "TRANG CHỦ", href: "index.html" },
   { key: "about", label: "VỀ CHÚNG TÔI", href: "gioi-thieu.html" },
@@ -34,10 +42,10 @@ const navItems = isEnglish ? [
 ];
 
 const trainingLinks = isEnglish ? [
-  ["CORPORATE AI TRAINING", "en.html#training"],
-  ["AI COURSES FOR INDIVIDUALS", "en.html#individual-courses"],
-  ["E-LEARNING COURSES", "en.html#elearning"],
-  ["DIGITAL LEARNING RESOURCES", "en.html#resources"],
+  ["CORPORATE AI TRAINING", "en-services.html#corporate-training"],
+  ["AI COURSES FOR INDIVIDUALS", "en-academy.html#individual-courses"],
+  ["E-LEARNING COURSES", "en-academy.html#elearning"],
+  ["DIGITAL LEARNING RESOURCES", "en-resources.html"],
 ] : [
   ["ĐÀO TẠO DOANH NGHIỆP", "dao-tao-ai-doanh-nghiep.html"],
   ["KHÓA HỌC AI CHO CÁ NHÂN", "hoc-vien.html#khoa-hoc-ca-nhan"],
@@ -118,7 +126,7 @@ if (headerTarget) {
     <header class="site-header" id="top">
       <div class="container header-inner">
         <a class="brand" href="${isEnglish ? "en.html" : "index.html"}" aria-label="${ui.logoLabel}">
-          <img src="assets/images/visunai-logo-transparent.png" alt="${isEnglish ? "VISUN AI - Digital Workforce" : "VISUN AI - Đội Nhân Sự Số"}" width="178" height="122">
+          <img src="assets/images/visunai-logo-transparent.png" alt="${isEnglish ? "VISUN AI - Digital Workforce" : "VISUN AI - Đội Nhân Sự Số"}" width="440" height="234">
         </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
           <span class="sr-only">${ui.openMenu}</span><span></span><span></span><span></span>
@@ -133,7 +141,7 @@ if (headerTarget) {
           </details>
           ${links.slice(2).join("")}
           <a class="language-switch" href="${ui.languageHref}" hreflang="${isEnglish ? "vi" : "en"}" aria-label="${ui.languageLabel}">${ui.languageText}</a>
-          <a class="button button-small header-cta" href="${isEnglish ? "en.html#consultation-form" : "lien-he.html#consultation-form"}">${ui.consult}</a>
+          <a class="button button-small header-cta" href="${isEnglish ? "en-contact.html#consultation-form" : "lien-he.html#consultation-form"}">${ui.consult}</a>
         </nav>
       </div>
     </header>
@@ -147,7 +155,7 @@ if (footerTarget) {
       <div class="container footer-grid">
         <div class="footer-brand">
           <p class="footer-company">${ui.company}</p>
-          <div class="footer-logo"><img src="assets/images/visunai-logo-white.png" alt="${isEnglish ? "VISUN AI - Digital Workforce" : "VISUN AI - Đội Nhân Sự Số"}" width="1278" height="658"></div>
+          <div class="footer-logo"><img src="assets/images/visunai-logo-white.png" alt="${isEnglish ? "VISUN AI - Digital Workforce" : "VISUN AI - Đội Nhân Sự Số"}" width="360" height="185"></div>
           <p>${ui.tagline}</p>
           <p class="footer-note">${ui.footerNote}</p>
           <div class="social-links" aria-label="${ui.socialLabel}">
@@ -163,17 +171,17 @@ if (footerTarget) {
         </div>
         <div>
           <h2>${ui.explore}</h2>
-          <a href="${isEnglish ? "en.html#about" : "gioi-thieu.html"}">${ui.about}</a>
-          <a href="${isEnglish ? "en.html#insights" : "blog.html"}">${ui.blog}</a>
-          <a href="${isEnglish ? "en.html#resources" : "tai-nguyen.html"}">${ui.resources}</a>
-          <a href="${isEnglish ? "en.html#consultation-form" : "cau-hoi-thuong-gap.html"}">${ui.faq}</a>
+          <a href="${isEnglish ? "en-about.html" : "gioi-thieu.html"}">${ui.about}</a>
+          <a href="${isEnglish ? "en-blog.html" : "blog.html"}">${ui.blog}</a>
+          <a href="${isEnglish ? "en-resources.html" : "tai-nguyen.html"}">${ui.resources}</a>
+          <a href="${isEnglish ? "en-faq.html" : "cau-hoi-thuong-gap.html"}">${ui.faq}</a>
         </div>
         <div class="footer-contact">
           <h2>${ui.contact}</h2>
           <a class="footer-contact-phone" href="tel:+84986315286">${isEnglish ? "Phone" : "Điện thoại"}: 0986 315 286</a>
           <a class="footer-contact-email" href="mailto:infor.visun@gmail.com">Email: infor.visun@gmail.com</a>
           <p>${ui.location}</p>
-          <a href="${isEnglish ? "en.html#consultation-form" : "lien-he.html#consultation-form"}"><strong>${ui.consult} →</strong></a>
+          <a href="${isEnglish ? "en-contact.html#consultation-form" : "lien-he.html#consultation-form"}"><strong>${ui.consult} →</strong></a>
         </div>
         <div>
           <h2>${ui.legal}</h2>
@@ -220,6 +228,20 @@ if (menuButton && nav) {
     nav.classList.remove("is-open");
     document.body.classList.remove("menu-open");
   }));
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    menuButton.setAttribute("aria-expanded", "false");
+    nav.classList.remove("is-open");
+    document.body.classList.remove("menu-open");
+    document.querySelectorAll(".nav-dropdown[open]").forEach((dropdown) => dropdown.removeAttribute("open"));
+  });
+
+  document.addEventListener("click", (event) => {
+    document.querySelectorAll(".nav-dropdown[open]").forEach((dropdown) => {
+      if (!dropdown.contains(event.target)) dropdown.removeAttribute("open");
+    });
+  });
 }
 
 const header = document.querySelector(".site-header");
