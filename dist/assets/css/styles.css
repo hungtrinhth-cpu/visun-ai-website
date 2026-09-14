@@ -459,7 +459,7 @@ p { margin: 0; }
 .footer-logo { width: 96px; height: 50px; display: grid; place-items: center; overflow: visible; }
 .footer-logo img { width: 96px; height: 50px; object-fit: contain; }
 .footer-brand > p { margin-top: 20px; color: var(--white); font-family: "Montserrat", sans-serif; font-size: 1.2rem; font-weight: 800; }
-.footer-brand .footer-company { max-width: none; margin: 0 0 15px; color: var(--white); font-size: clamp(.72rem, .78vw, .82rem); line-height: 1.45; letter-spacing: .015em; white-space: nowrap; }
+.footer-brand .footer-company { max-width: none; margin: 0 0 15px; color: var(--white); font-size: clamp(.82rem, 1.02vw, 1.02rem); line-height: 1.4; letter-spacing: .005em; white-space: nowrap; }
 .footer-brand .footer-note { margin-top: 7px; color: rgba(255,255,255,.68); font-family: "Inter", sans-serif; font-size: .96rem; font-weight: 400; }
 .site-footer h2 { margin-bottom: 22px; color: var(--white); font-size: 1rem; letter-spacing: .045em; }
 .site-footer a, .site-footer div > p { display: block; margin-top: 12px; font-size: .95rem; }
